@@ -1,0 +1,9 @@
+.container
+{
+    display:flex;
+}
+.left,.right
+{
+    width:50%;
+    height:400px;
+}

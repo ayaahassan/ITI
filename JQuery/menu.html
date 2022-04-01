@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>jQuery lab</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="fontawesome/css/all.min.css">  
+              <script src="jquery.min.js"></script>	
+              <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+              <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+             
+        <script>
+           
+            $(() => {
+				let items = [];
+
+				$.ajax({
+                  
+					url: 'items.php',
+					success: (resp) => {
+                        console.log(resp);
+						items = resp;
+			        console.log(items.length);
+						renderItems();
+					},
+					error: () => {
+						console.log("error")
+					},
+					complete: () => {
+						
+					}
+				})
+                const renderItems = () => {
+					for(let item of items) {
+						const newItem = $('.item.hidden').clone();
+
+						newItem
+							.removeClass('hidden')
+							.appendTo('.menu')
+							.children('h3')
+								.html(`${item.name}`)
+							
+						newItem
+							.children('img').attr('src', item.image)
+                        newItem
+							.children('h6').html(`${item.description}`)
+                        newItem
+							.children('h5').html(`${item.price}`)
+
+					}
+				}
+
+                $('body').on('click', '.item .order ', function() {
+					const btn = $(this),
+					     item = btn.parent('.item');
+					 const image=item.children('img').attr('src');
+                     const name=item.children('h3').html();
+                        console.log(name);
+					addToCartTotal(item);
+				});
+
+               const addToCartTotal=(item)=>{
+                const neworder=item.clone();
+                let increment= $('<button class="increment">+</button>');
+                let content= $('<div class="amount">6</div>');
+                let decrement= $('<button class="decrement">-</button>');
+                neworder
+                .remove('button .order')
+                .append(increment)
+                .append(content)
+                .append(decrement)
+                .appendTo('.menuOrder');
+
+				
+               };
+               
+            
+               $('.draggable').draggable({
+                revert: "invalid",
+                stack: ".draggable",
+                helper: 'clone'
+                });
+               // console.log("drop");
+              
+              $('.droppable').droppable({
+               accept: ".draggable",
+               drop: function (event, ui) {
+               var droppable = $(this);
+               var draggable = ui.draggable;
+               console.log("drop");
+              // Move draggable into droppable
+               draggable.clone().appendTo('.menuOrder');
+           //draggable.css({top: '5px', left: '5px'});
+             }
+          });
+            }
+            );
+        </script>
+    </head>
+    <body>
+     
+      <section class="container">
+          <section class="left">
+          <header>
+              <img class="header"src="images/header.jpg"/>
+          </header>
+          <section class="menu">
+            <div class="item draggable hidden">
+                <img class="product"src=""/>
+                <h3 class="name"></h3>
+                <h6 class="description"></h4>
+                <h5 class="price"></h5>
+                <button class="order">Order Now</button>
+            </div>  
+          </section>
+          </section>
+          <section class="right">
+            
+            <div class="menuOrder droppable">
+              <i class="fa-solid fa-cart-shopping icon"></i>
+            </div>
+
+            <div class="cart hidden ">
+                <img class="product"src=""/>
+                <h3 class="name"></h3>
+                <button class="increment">+</button>
+                <div class="amount"></div>
+                <button class="decrement">-</button>
+
+            </div>
+          </section>
+      </section>
+        
+    </body>
+    </html>
