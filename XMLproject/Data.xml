@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+<employee>
+<name>aya</name>
+<phone>12345</phone>
+<address>smouha</address>
+<email>aya@yahoo.com</email>
+</employee>
+<employee>
+<name>ahmed</name>
+<phone>321</phone>
+<address>smouha</address>
+<email>ahmed@yahoo.com</email>
+</employee>
+<employee>
+<name>hassan</name>
+<phone>444</phone>
+<address>smouha</address>
+<email>hassan@yahoo.com</email>
+</employee>
+<employee>
+<name>mohamed</name>
+<phone>555</phone>
+<address>smouha</address>
+<email>mohamed@yahoo.com</email>
+</employee>
+</employees>

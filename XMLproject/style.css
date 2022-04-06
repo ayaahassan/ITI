@@ -1,0 +1,29 @@
+
+body
+{
+    display:grid;
+    place-items:center;
+}
+label
+{
+color: rgb(127, 118, 242);
+}
+.button
+{
+    width:70px;
+    height:30px;
+    background-color: rgb(229, 229, 243);
+    border-radius: 5px;
+}
+.container
+{
+    width:500px;
+    height:400px;
+    padding: 20px;
+    display:grid;
+    place-items:center;
+    background-color: rgb(251, 248, 255);
+    border-radius: 10px;
+    border-color: rgb(211, 187, 240);
+    border-style: solid;
+    }
