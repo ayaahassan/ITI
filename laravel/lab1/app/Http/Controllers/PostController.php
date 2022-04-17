@@ -48,8 +48,8 @@ class PostController extends Controller
        if(self::$id<0)
        self::$id=0;
         return view('posts.index', [
-            'posts' => self::$posts,
-        ]); 
+          'posts' => self::$posts,
+       ]); 
     }
     public function update(Request $request)
     {
