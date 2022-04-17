@@ -28,6 +28,7 @@
         </div>
 
     </div>
-</div>
+</div><br>
 
+@include('posts.commentform') 
 @endsection

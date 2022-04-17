@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-       // $posts = Post::all();
+       
         $posts = Post::paginate(15);
         return view('posts.index', [
             'posts' => $posts,
@@ -74,9 +74,10 @@ class PostController extends Controller
     }
     public function show($postId)
     {
+        $users = User::all();
         $post = Post::find($postId);
         return view('posts.view', [
-            'data' => $post,
+            'data' => $post,'users' => $users,
         ]);
     }
 }
