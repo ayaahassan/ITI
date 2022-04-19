@@ -25,4 +25,3 @@ Route::post('/posts/update', [PostController::class, 'update'])->name('posts.upd
 Route::get('/posts/{post}/{title}/{creator}/{date}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/posts/{post}', [PostController::class, 'delete'])->name('posts.destory');
 
-//Route::get('/posts/{id}/{title}/{creator}/{date}', [PostController::class, 'show'])->name('posts.show');

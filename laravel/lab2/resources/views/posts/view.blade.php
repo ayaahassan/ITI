@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @section('view')Index @endsection
-
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -21,9 +20,9 @@
 
     <div class="card-body">
         <div>
-            <span style="font-size: 1.2rem; font-weight: bold">ID:- &nbsp;</span>{{ $data->id }}<br>
+            <span  style="font-size: 1.2rem; font-weight: bold">ID:- &nbsp;</span><label id="postid">{{ $data->id }}</label><br>
             <span style="font-size: 1.2rem; font-weight: bold">creator:- &nbsp;</span>{{ $data->post_creator }}<br>
-            <span style="font-size: 1.2rem; font-weight: bold">Date:- &nbsp;</span>{{ $data->created_time }}<br>
+            <span style="font-size: 1.2rem; font-weight: bold">Date:- &nbsp;</span> <strong>{{ \Illuminate\Support\carbon::parse($data->created_at)->isoFormat('MMMM Do YYYY, h:mm:ss a') }}</strong><br>
 
         </div>
 

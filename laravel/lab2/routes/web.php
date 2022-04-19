@@ -22,8 +22,8 @@ Route::get('/', function () {
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create/', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::put('/posts/update', [PostController::class, 'update'])->name('posts.update');
-Route::get('/posts/edit/{post}', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/update/{id}', [PostController::class, 'update'])->name('posts.update');
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::delete('/posts/delete/{post}', [PostController::class, 'destory'])->name('posts.destory');
 Route::post('posts/commentform', [CommentController::class, 'create'])->name('comments.create');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
