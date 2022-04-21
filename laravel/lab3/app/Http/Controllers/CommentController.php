@@ -35,6 +35,6 @@ class CommentController extends Controller
                'data' => $post,'users' => $users,
            ]);
           // return $comment;*/
-        return route('posts.show',(int)$request->get('post_id') );
+          return route('posts.show',(int)$request->get('post_id') );
     }
 }

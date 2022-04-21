@@ -14,6 +14,7 @@ class PostController extends Controller
     {
        
         $posts = Post::paginate(15);
+        dd($posts);
         return view('posts.index', [
             'posts' => $posts,
         ]);

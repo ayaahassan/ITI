@@ -12,15 +12,15 @@
         <input type="text" class="form-control" name="title" id="exampleFormControlInput1" value="{{$post->title}}">
     </div>
     <div class="mb-3">
-        <label for="exampleFormControlTextarea1" name="description" class="form-label">Description</label>
-        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$post->title}}</textarea>
+        <label for="exampleFormControlTextarea1"  class="form-label">Description</label>
+        <textarea class="form-control" name="description" id="exampleFormControlTextarea1 rows="3">{{$post->description}}</textarea>
     </div>
 
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Post Creator</label>
         <select class="form-control" name="post_creator">
             @foreach($users as $user)
-            <option name="creator" value="{{$user->name}}">{{$user->name}}</option>
+            <option name="creator" value="{{$user->id}}">{{$user->name}}</option>
             @endforeach
 
         </select>
