@@ -1,136 +1,258 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>jQuery lab</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="fontawesome/css/all.min.css">  
-              <script src="jquery.min.js"></script>	
-              <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-              <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-             
-        <script>
-           
-            $(() => {
-				let items = [];
 
-				$.ajax({
-                  
-					url: 'items.php',
-					success: (resp) => {
-                        console.log(resp);
-						items = resp;
-			        console.log(items.length);
-						renderItems();
-					},
-					error: () => {
-						console.log("error")
-					},
-					complete: () => {
-						
-					}
-				})
-                const renderItems = () => {
-					for(let item of items) {
-						const newItem = $('.item.hidden').clone();
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery lab</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-						newItem
-							.removeClass('hidden')
-							.appendTo('.menu')
-							.children('h3')
-								.html(`${item.name}`)
-							
-						newItem
-							.children('img').attr('src', item.image)
-                        newItem
-							.children('h6').html(`${item.description}`)
-                        newItem
-							.children('h5').html(`${item.price}`)
+  <script>
 
-					}
-				}
+    $(() => {
+      let items = [];
 
-                $('body').on('click', '.item .order ', function() {
-					const btn = $(this),
-					     item = btn.parent('.item');
-					 const image=item.children('img').attr('src');
-                     const name=item.children('h3').html();
-                        console.log(name);
-					addToCartTotal(item);
-				});
+      $.ajax({
 
-               const addToCartTotal=(item)=>{
-                const neworder=item.clone();
-                let increment= $('<button class="increment">+</button>');
-                let content= $('<div class="amount">6</div>');
-                let decrement= $('<button class="decrement">-</button>');
-                neworder
-                .remove('button .order')
-                .append(increment)
-                .append(content)
-                .append(decrement)
-                .appendTo('.menuOrder');
+        url: 'items.php',
+        success: (resp) => {
+          console.log(resp);
+          items = resp;
+          console.log(items.length);
+          renderItems();
+        },
+        error: () => {
+          console.log("error")
+        },
+        complete: () => {
 
-				
-               };
-               
-            
-               $('.draggable').draggable({
-                revert: "invalid",
-                stack: ".draggable",
-                helper: 'clone'
-                });
-               // console.log("drop");
-              
-              $('.droppable').droppable({
-               accept: ".draggable",
-               drop: function (event, ui) {
-               var droppable = $(this);
-               var draggable = ui.draggable;
-               console.log("drop");
-              // Move draggable into droppable
-               draggable.clone().appendTo('.menuOrder');
-           //draggable.css({top: '5px', left: '5px'});
-             }
-          });
+        }
+      })
+      var id = 0;
+      const renderItems = () => {
+        for (let item of items) {
+          const newItem = $('.item.hidden').clone();
+          id++;
+          newItem
+            .removeClass('hidden')
+            .attr('id', id)
+            .appendTo('.menu')
+            .children('h3')
+            .html(`${item.name}`)
+
+          newItem
+            .children('img').attr('src', item.image)
+          newItem
+            .children('h6').html(`${item.description}`)
+          newItem
+            .children('h5').html(`${item.price}`)
+
+        }
+
+        $('.draggable').draggable({
+          revert: "invalid",
+          stack: ".draggable",
+          helper: 'clone'
+        });
+
+
+
+
+        $('.droppable').droppable({
+
+          drop: function (event, ui) {
+            var droppable = $(this);
+            var draggable = ui.draggable;
+            // console.log(droppable);
+            // Move draggable into droppable
+
+            let increment = $('<button class="increment">+</button><br>');
+            let content = $('<div class="amount">1</div>');
+            let decrement = $('<button class="decrement">-</button>');
+            let remove = $('<button class="remove">Remove</button>');
+            const copyitem = draggable.clone();
+            copyitem.children('.order ').addClass('hidden')
+            copyitem.children('.description ').addClass('hidden');
+            copyitem
+
+              .addClass('returnOrder')
+              .append(decrement)
+              .append(content)
+              .append(increment)
+              .append(remove)
+              .appendTo('.menuOrder');
+           // $('.draggable.returnOrder').draggable();
+            $('.draggable.returnOrder').draggable(
+            {
+              stop: function (event, ui) {
+               console.log(ui.offset['left']);
+               if(ui.offset['left']<828)
+               {
+                 $(this).remove();
+               }
+               }
             }
-            );
-        </script>
-    </head>
-    <body>
-     
-      <section class="container">
-          <section class="left">
-          <header>
-              <img class="header"src="images/header.jpg"/>
-          </header>
-          <section class="menu">
-            <div class="item draggable hidden">
-                <img class="product"src=""/>
-                <h3 class="name"></h3>
-                <h6 class="description"></h4>
-                <h5 class="price"></h5>
-                <button class="order">Order Now</button>
-            </div>  
-          </section>
-          </section>
-          <section class="right">
-            
-            <div class="menuOrder droppable">
-              <i class="fa-solid fa-cart-shopping icon"></i>
-            </div>
+          );
 
-            <div class="cart hidden ">
-                <img class="product"src=""/>
-                <h3 class="name"></h3>
-                <button class="increment">+</button>
-                <div class="amount"></div>
-                <button class="decrement">-</button>
+            //draggable.css({top: '5px', left: '5px'});
+          },
+          accept: function (draggable) {
+            var eq = draggable.attr('id');
+            return $('.menuOrder').find('#' + eq).length < 1;
+          }
 
-            </div>
-          </section>
-      </section>
+        });
+
+      }
+      $('body').on('click', '.item .remove ', function () {
+        const btn = $(this);
+        btn.parent('.item').remove();
+
+
+      });
+
+      $('body').on('click', '.item .order ', function () {
+        const btn = $(this),
+          item = btn.parent('.item');
+
+        addToCartTotal(item);
+      });
+
+      const addToCartTotal = (item) => {
+        var eq = item.attr('id');
+        if ($('.menuOrder').find('#' + eq).length == 0) {
+          var getChild = $(".menuOrder").children();
+          const neworder = item.clone();
+          let increment = $('<button class="increment">+</button><br>');
+          let content = $('<div class="amount">1</div>');
+          let decrement = $('<button class="decrement">-</button>');
+          let remove = $('<button class="remove">Remove</button>');
+          neworder
+            .children('.order').addClass('hidden');
+          neworder.children('.description ').addClass('hidden');
+          neworder
+            .addClass('returnOrder')
+            .append(decrement)
+            .append(content)
+            .append(increment)
+            .append(remove)
+            .appendTo('.menuOrder');
+          $('.draggable.returnOrder').draggable(
+            {
+              stop: function (event, ui) {
+               console.log(ui.offset['left']);
+               if(ui.offset['left']<828)
+               {
+                 $(this).remove();
+               }
+               }
+            }
+          );
+
+        }
+
+      };
+
+      $('body').on('click', '.item .increment ', function () {
+        const btn = $(this);
+        var amount = Number(btn.parent().children('.amount').text());
+        amount = ++amount;
+        $(btn.parent().children('.amount')).html(amount);
+
+      });
+      $('body').on('click', '.item .decrement ', function () {
+        const btn = $(this);
+        var amount = Number(btn.parent().children('.amount').text());
+        amount = amount <= 1 ? 1 : --amount;
+
+
+        $(btn.parent().children('.amount')).html(amount);
+
+      });
+      $('body').on('click', '.confirm ', function () {
+        var getChild = $(".menuOrder").children();
         
-    </body>
-    </html>
+        var totalprice = 0;
+        var delivery = 30;
+        var vat = 0.14;
+        var totalbill;
+        if(getChild.length>0)
+        {
+        getChild.each(function (index, el) {
+          var amount = Number($(el).children('.amount').text());
+          var id = Number($(el).attr('id'));
+          totalprice += (amount * items[id - 1]['price']);
+
+          console.log(totalprice);
+          //  localStorage.setItem('totalPrice', totalprice);
+          vat = vat * Number(totalprice);
+          console.log($(el).children('.amount').text());
+           totalbill = Number(totalprice) + delivery + vat;
+          
+        })
+      }
+      else
+      {
+         totalprice = 0;
+         delivery = 0;
+        vat = 0;
+        totalbill=0;
+      }
+      $('.subtotal').html(totalprice);
+          $('.delivery').html(delivery);
+          $('.VAT').html(vat);
+          $('.orderTotal').html(totalbill);
+      });
+
+    }
+    );
+  </script>
+</head>
+
+<body>
+
+  <section class="container">
+    <section class="left">
+      <header>
+        <img class="header" src="images/header.jpg" />
+      </header>
+      <section class="menu">
+        <div class="item draggable hidden">
+          <img class="product" src="" />
+          <h3 class="name"></h3>
+          <h6 class="description ">
+            </h4>
+            <h5 class="price"></h5>
+            <button class="order ">Order Now</button>
+        </div>
+      </section>
+    </section>
+    <section class="right">
+      <!--  <i class="fas fa-cart-plus icon"></i>-->
+      <div class="menuOrder droppable"> </div>
+      <div class="bottom">
+        <button class="confirm">confirm order</button>
+      </div>
+      <hr>
+      <div class="bill">
+        <h4>SubTotal</h4>
+        <h5 class="subtotal">0</h5>
+        <h4>Delivery</h4>
+        <h5 class="delivery">0</h5>
+        <h4>VAT</h4>
+        <h5 class="VAT">0</h5>
+        <h4>Order Total</h4>
+        <h5 class="orderTotal">0</h5>
+      </div>
+
+
+    </section>
+  </section>
+
+</body>
+
+</html>

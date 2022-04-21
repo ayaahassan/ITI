@@ -9,15 +9,16 @@ margin:0%;
 }
 .left
 {
-    width:60%;
+    width:70%;
     height:640px;
-    background-color: aliceblue;
+    background-color: rgb(238, 241, 241);
 }
 .right
 {
-    background-color: rgb(247, 244, 242);
+    background-color: rgb(245, 157, 99);
     height:790px;
-    width:40%;
+    width:30%;
+    padding: 1%;
 
 }
 .header
@@ -76,17 +77,32 @@ margin:0%;
 }
 .amount{
     width:30px;
-    height:30px;
+    height:20px;
+    margin:1%;
     background-color: white;
     display: inline-block;
 }
 .menuOrder
 {
     width:100%;
-     height:50%;
-     background-color: rgb(255, 255, 255);
+     height:39%;
      padding:2%;
-     overflow:auto;
+      /* overflow: visible;  */
      box-sizing: border-box;
 
 } 
+.bottom
+{
+text-align: center;
+margin: 2%;
+}
+.bill
+{
+    display: grid;
+  grid-template-columns: auto auto ;
+}
+.remove
+{
+    background-color: rgb(245, 68, 68);
+    border-width: 0;
+}

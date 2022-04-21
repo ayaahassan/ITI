@@ -36,6 +36,18 @@
 			'price' => 30,
 			'image' => 'images/6.jpg',
             'description' => ' Bun 4.5 inch, whopper patty, American cheese, beef bacon, mayonnaise, lettuce, tomato, fried onion '
+		],
+		[
+			'name' => '  Fiery Crunchy  ',
+			'price' => 60,
+			'image' => 'images/7.jpg',
+            'description' => ' Bun 4.5 inch, whopper patty, American cheese, beef bacon, mayonnaise, lettuce, tomato, fried onion '
+		],
+		[
+			'name' => '  Fiery Royal Spicy ',
+			'price' => 80,
+			'image' => 'images/8.jpg',
+            'description' => ' Bun 4.5 inch, whopper patty, American cheese, beef bacon, mayonnaise, lettuce, tomato, fried onion '
 		]
 	];
 
