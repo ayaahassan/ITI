@@ -9,11 +9,11 @@
     @csrf
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" id="exampleFormControlInput1" value="{{$post->title}}">
+        <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="{{$post->title}}">
     </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" name="description" class="form-label">Description</label>
-        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$post->title}}</textarea>
+        <textarea class="form-control" name="description" id="exampleFormControlTextarea1"placeholder="{{$post->title}}" rows="3"></textarea>
     </div>
 
     <div class="mb-3">

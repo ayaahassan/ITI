@@ -13,7 +13,7 @@
     </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1"  class="form-label">Description</label>
-        <textarea class="form-control" name="description" id="exampleFormControlTextarea1 rows="3">{{$post->description}}</textarea>
+        <textarea class="form-control" name="description" id="exampleFormControlTextarea1"value="{{$post->description}}" rows="3"></textarea>
     </div>
 
     <div class="mb-3">
@@ -25,7 +25,7 @@
 
         </select>
     </div>
-
+    <input class="form-control "name="image" type="file" id="formFile"> <br>
     <button class="btn btn-success">update</button>
 </form>
 @endsection

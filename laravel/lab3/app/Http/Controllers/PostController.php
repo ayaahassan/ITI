@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -26,7 +26,6 @@ class PostController extends Controller
     public function create()
     {
         $users = User::all();
-
         return view('posts.create', [
             'users' => $users,
         ]);
@@ -34,27 +33,29 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        //  $data = request()->all();
-        //  dd($data);
+
         $data = $request->only('title', 'description', 'post_creator', 'created_time', 'image');
         $path = Storage::putFile('local', $request->file('image'));
-        //dd($path);
         $name = basename($path);
-        // dd($name);
-        $ldate = Carbon::now();
-        $ldate = date('Y-m-d ');
         $userid = $request->get('post_creator');
-        $username = User::where('id', $userid)->first()->name;
-        Post::create([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'post_creator' => $username,
-            'created_time' => $ldate,
-            'user_id' => $userid,
-            'image' => $name,
+        $user = User::find($userid);
+        if ($user) {
+            $ldate = Carbon::now();
+            $ldate = date('Y-m-d ');
+            $username = User::where('id', $userid)->first()->name;
+            Post::create([
+                'title' => $data['title'],
+                'description' => $data['description'],
+                'post_creator' => $username,
+                'created_time' => $ldate,
+                'user_id' => $userid,
+                'image' => $name,
 
-        ]);
-        return to_route('posts.index');
+            ]);
+            return to_route('posts.index');
+        } else {
+            dd("wrong user id");
+        }
     }
     public function edit($postid)
     {
@@ -69,34 +70,33 @@ class PostController extends Controller
     {
 
         $post = Post::find($postid);
-       
-       // dd( $post->image);
-     //  File::delete(public_path($post->image));
-       //File::delete($post->image);
-       //File::delete('app/public'.$post->image);
-      echo "in destory";
-       unlink(storage_path('app/local/'.$post->image));
-        Storage::delete($post->image);
+        //File::delete(storage_path($post->image));
+        //File::delete($post->image);
+        //File::delete('app/public'.$post->image);
+        unlink(storage_path('app/local/' . $post->image));
+        //  Storage::delete(storage_path('app/local/'.$post->image));
         $post->delete();
-
         return to_route('posts.index');
     }
     public function update(UpdatePostRequest $request, $id)
     {
-
-        //  dd($request->all());
-        // $Id = (int)$request->get('ID');
         $userid = $request->get('post_creator');
-        $username = User::where('id', $userid)->first()->name;
-        //dd($user);
-        $post = Post::find($id);
-        $post->title = $request->get('title');
-        $post->description = $request->get('description');
-        $post->post_creator = $username;
-        $post->user_id = $userid;
-        $post->update();
+        $user = User::find($userid);
+        if ($user) {
+            $path = Storage::putFile('local', $request->file('image'));
+            $name = basename($path);
+            $username = User::where('id', $userid)->first()->name;
+            $post = Post::find($id);
+            $post->title = $request->get('title');
+            $post->description = $request->get('description');
+            $post->post_creator = $username;
+            $post->user_id = $userid;
+            $post->image=$name;
+            $post->update();
 
-        return to_route('posts.index');
+            return to_route('posts.index');
+        } else
+            dd("wrong user id");
     }
     public function show($postId)
     {
