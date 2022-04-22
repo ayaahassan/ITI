@@ -1,0 +1,49 @@
+const mongoose=require('mongoose')
+const schema=mongoose.schema
+
+const UserSchema=new schema({
+    email:{
+        type:String,
+        required:true
+    },
+    username:{
+        type:String,
+        unique:true,
+        required:true
+
+    },
+    password:{
+        type:String
+    },
+    firstname:{
+        type:String
+    },
+    lastname:{
+        type:String
+    }
+})
+
+
+
+
+
+
+
+
+
+
+/*const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
+const DriverSchema = new Schema({
+  email: {
+    type: String,
+    required: true
+  },
+  driving: {
+    type: Boolean,
+    default: false
+  }
+})
+// //
+const Driver = mongoose.model('driver', DriverSchema);
+module.exports = Driver;*/
