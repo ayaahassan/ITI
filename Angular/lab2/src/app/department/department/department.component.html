@@ -1,0 +1,68 @@
+<div id="contenttext">
+
+    <div class="bodytext" style="padding:10px;" >
+        <div style="padding:10px">
+            <span class="titletext">Welcome to {{iti}}</span>
+        </div>
+    </div>
+     
+        <label for="exampleInputid" class="form-label">ID</label>
+        <input type="text"[(ngModel)]="dept.id" class="form-control" id="exampleInputid" >
+     
+        <label for="exampleInputname" class="form-label">Name</label>
+        <input type="text"[(ngModel)]="dept.name" class="form-control" id="exampleInputname" >
+      <div class="mb-3">
+        <label for="exampleInputcapacity" class="form-label">capacity</label>
+        <input type="text" [(ngModel)]="dept.capacity"class="form-control" id="exampleInputcapacity" >
+      </div>
+    <button (click)="Add()" class="btn btn-info ">Add</button>
+    <button (click)="Update(dept.id)" class="btn btn-success">Update</button>
+
+   
+
+    <table class="mt-3 table table-bordered  table-hover table-stripped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of depts;let ser=index">
+                <td>{{ser+1}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.capacity}}</td>
+                <td>
+                    <button (click)="show(item.id)" class="btn btn-info">Show</button>
+                    <button (click)="Edit(item.id)" class="btn btn-success">Edit</button>
+                    <button (click)="deleteitem(item.id)" class="btn btn-danger">delete</button>
+
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <table class="mt-3 table table-bordered  table-hover table-stripped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Capacity</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{showDept.id}}</td>
+                <td>{{showDept.name}}</td>
+                <td>{{showDept.capacity}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
