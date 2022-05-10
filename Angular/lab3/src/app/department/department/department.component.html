@@ -1,0 +1,88 @@
+<div >
+
+    <div class="bodytext" style="padding:5px;" >
+        <div style="padding:5px">
+            <span class="titletext">Welcome to {{iti}}</span>
+        </div>
+    </div>
+    
+    <label for="exampleInputid" class="form-label">ID</label>
+        <input type="text"[(ngModel)]="dept.id" class="form-control" id="exampleInputid" >
+      
+        <label for="exampleInputname" class="form-label">Name</label>
+        <input type="text"[(ngModel)]="dept.name" class="form-control" id="exampleInputname" >
+      <div class="mb-3">
+        <label for="exampleInputcapacity" class="form-label">capacity</label>
+        <input type="text" [(ngModel)]="dept.capacity"class="form-control" id="exampleInputcapacity" >
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputrate" class="form-label">Rate</label>
+        <input type="text" [(ngModel)]="dept.rate"class="form-control" id="exampleInputrate" >
+      </div>
+    <button (click)="Add()" class="btn btn-info m-3">Add</button>
+ 
+   
+    <table class="mt-3 table table-bordered  table-hover table-stripped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><button (click)="showImage()" class="btn btn-info">Show Image</button></th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of depts;let ser=index">
+                <td>{{ser+1}}</td>
+                <td ><img *ngIf="isShowImage" src="./assets/images/{{item.image}}" alt={{ser+1}}></td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.capacity}}</td>
+                <td><app-rate [rating]="item.rate"></app-rate></td>
+                <td>
+                    <button (click)="show(item.id)" class="btn btn-info ">Show</button>
+                    <button (click)="Edit(item.id)" class="btn btn-success m-2">Edit</button>
+                    <button (click)="deleteitem(item.id)" class="btn btn-danger">delete</button>
+
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    
+            
+</div>
+<!--<mat-slider min="1" max="100" step="1" value="50"></mat-slider>-->
+<div  *ngIf="isEdit" style="background-color: rgb(255, 255, 255);border-radius: 2%;border-color: red;border-width: 1%;border-style: solid; margin: 0 7%;position:absolute;top:82%; width:600px;height:320px"class="edit">
+    <label for="exampleInputname" class="form-label mt-3">Name</label>
+    <input style="width:500px;" type="text"[(ngModel)]="editDept.name" class="form-control" id="exampleInputname" >
+    <div class="mb-3">
+    <label for="exampleInputcapacity" class="form-label">capacity</label>
+    <input  style="width:500px;"type="text" [(ngModel)]="editDept.capacity"class="form-control" id="exampleInputcapacity" >
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputrate" class="form-label">Rate</label>
+    <input style="width:500px;" type="text" [(ngModel)]="editDept.rate"class="form-control" id="exampleInputrate" >
+  </div>
+  <button (click)="cancel()" class="btn btn-secondary m-2 ">Cancel</button>
+  <button (click)="Update(dept.id)" class="btn btn-success ">Update</button>
+
+</div>
+
+
+
+<div  *ngIf="isShow" style="background-color: rgb(255, 255, 255);border-radius: 2%;border-color: red;border-width: 1%;border-style: solid; margin: 0 7%;position:absolute;top:82%; width:600px;height:600px"class="show">
+   <h1>ID</h1> {{showDept.id}}
+   <h1>Name</h1> {{showDept.name}}
+   <h1>Capacity</h1> {{showDept.capacity}}
+   <h1>Logo</h1><img  src="./assets/images/{{showDept.image}}" alt="logo">
+   <h1>Rate</h1> <app-rate [rating]="showDept.rate"></app-rate>
+
+
+  <button (click)="hide()" class="btn btn-success ">OK</button>
+
+</div>
