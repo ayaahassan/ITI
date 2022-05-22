@@ -1,0 +1,16 @@
+<br>
+<div class="m-3">
+<label for="exampleInputid" class="form-label">ID</label>
+        <input type="text"[(ngModel)]="dept.id" class="form-control" id="exampleInputid" >
+      
+        <label for="exampleInputname" class="form-label">Name</label>
+        <input type="text"[(ngModel)]="dept.name" class="form-control" id="exampleInputname" >
+      
+      <div class="mb-3">
+        <label for="exampleInputrate" class="form-label"><Label>Location</Label></label>
+        <input type="text" [(ngModel)]="dept.location"class="form-control" id="exampleInputrate" >
+      </div>
+
+      <button (click)="back()" class="btn btn-info m-3">Back</button>
+     <button (click)="Add()" class="btn btn-success m-3">Add</button>
+    </div>

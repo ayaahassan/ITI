@@ -1,0 +1,5 @@
+<form #signup="ngForm">
+    <input type="text" name="userid" [(ngModel)]="user.id">
+    <input type="text" name="username" [(ngModel)]="user.name">
+</form>
+<button (click)="register(signup)" class="btn btn-success">sign up</button>
