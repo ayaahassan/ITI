@@ -1,0 +1,26 @@
+{% extends 'todo/base.html' %}
+ <h1>Welcome To Update single Todo Task</h1>
+{% block body-content %}
+<div style='margin :60px ; width: fit-content'>
+   <form method="POST" action="{% url 'todo:save' task_key%}">
+     {% csrf_token %}
+     <br>
+     <div class="form-group">
+       <label>Name</label>
+          <input type="text" class="form-control"  placeholder= {{my_todo.name}} name="name" >
+     </div>
+     <br><br>
+     <div class="form-group">
+       <label >Priority</label>
+<input type="text" class="form-control"  placeholder={{my_todo.priority}} name="priority">
+     </div>
+     <br><br>
+     <div class="form-group">
+       <label >Is_Done</label>
+          <input type="text" class="form-control" placeholder={{my_todo.is_done}} name="is_done">
+     </div>
+     <br><br><br>
+     <button style='margin-left :40%' type="submit" class="btn btn-primary">Submit</button>
+   </form>
+</div>
+{% endblock %}

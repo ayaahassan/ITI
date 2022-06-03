@@ -1,0 +1,31 @@
+{% extends 'todo/base.html' %}
+{% block body_content%}
+   <h1>welcome to iti</h1>
+{% if warning_msg %}
+ <div class="alert alert-danger">{{warning_msg}}</div>
+{% endif%}
+   <table class="table" >
+       <thead>
+       <th>Name</th>
+       <th>priority</th>
+       <th>Finished</th>
+       <th><center>Actions</center</th>
+       </thead>
+       <tbody>
+      {% for todo, value in my_todos.items %}
+     <tr>
+         <td> {{todo}} </td>
+         <td> {{value.priority}}</td>
+         <td>{{value.is_done}}</td>
+         <td><a class="btn btn-info" href="{% url 'todo:detail' todo %}">Details</a></td>
+         <td><a class="btn btn-success" href="{% url 'todo:done' todo %}">Mark Done</a></td>
+         <td><a class="btn btn-danger" href="{% url 'todo:delete' todo %}">Delete</a></td>
+
+
+     </tr>
+      {% endfor %}
+       </tbody>
+   </table>
+
+{% endblock %}
+
