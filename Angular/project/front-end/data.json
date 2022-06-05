@@ -1,0 +1,100 @@
+{
+  "USERS": [
+    {
+      "id": 1,
+      "first_name": "Barney2",
+      "age": 1,
+      "email": "brangle0@vk.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Gonzales",
+      "age": 2,
+      "email": "gvondrasek1@oakley.com"
+    },
+    {
+      "id": 3,
+      "first_name": "Tera",
+      "age": 3,
+      "email": "tgraveson2@yolasite.com"
+    },
+    {
+      "id": 4,
+      "first_name": "Nanni",
+      "age": 4,
+      "email": "ngotling3@wikipedia.org"
+    },
+    {
+      "id": 5,
+      "first_name": "Glenn",
+      "age": 5,
+      "email": "gvonoertzen4@devhub.com"
+    },
+    {
+      "id": 6,
+      "first_name": "Justine",
+      "age": 6,
+      "email": "jgerasch5@fc2.com"
+    },
+    {
+      "id": 7,
+      "first_name": "Rogers",
+      "age": 7,
+      "email": "rriceards6@fema.gov"
+    },
+    {
+      "id": 8,
+      "first_name": "Dalston",
+      "age": 8,
+      "email": "dmcguffie7@jimdo.com"
+    },
+    {
+      "id": 9,
+      "first_name": "Bertrand",
+      "age": 9,
+      "email": "bcaddens8@amazon.co.uk"
+    },
+    {
+      "id": 10,
+      "first_name": "Sheffy",
+      "age": 10,
+      "email": "skemmet9@globo.com"
+    },
+    {
+      "id": 11,
+      "first_name": "Duky",
+      "age": 11,
+      "email": "dthoma@virginia.edu"
+    },
+    {
+      "id": 12,
+      "first_name": "Zaneta",
+      "age": 12,
+      "email": "zcourageb@reverbnation.com"
+    },
+    {
+      "id": 13,
+      "first_name": "Moira",
+      "age": 13,
+      "email": "mcalvardc@nasa.gov"
+    },
+    {
+      "id": 14,
+      "first_name": "Rhody",
+      "age": 14,
+      "email": "rwheatcroftd@economist.com"
+    },
+    {
+      "id": 15,
+      "first_name": "Jed",
+      "age": 15,
+      "email": "jmonceye@1und1.de"
+    },
+    {
+      "id": 16,
+      "first_name": "Chickie",
+      "age": 16,
+      "email": "cmallordf@vkontakte.ru"
+    }
+  ]
+}

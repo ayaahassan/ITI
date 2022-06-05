@@ -1,0 +1,21 @@
+<div class="container">
+ 
+    <div class="mb-3">
+        <div class="mb-3">
+            <input class="form-control" type="text" [(ngModel)]="updateUser.first_name" placeholder="Name"
+                aria-label="default input example">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" type="text" [(ngModel)]="updateUser.age" placeholder="Age"
+                aria-label="default input example">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" [(ngModel)]="updateUser.email" id="exampleFormControlInput1"
+                placeholder="name@example.com">
+        </div>
+        <button class="btn btn-info m-2" (click)="back()">Back</button>
+        <button class="btn btn-success" (click)="update()">Update</button>
+    </div>
+    </div>
+       
