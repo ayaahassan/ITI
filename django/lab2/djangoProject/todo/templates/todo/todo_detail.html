@@ -1,0 +1,10 @@
+
+{% extends 'general_templates/base.html' %}
+{% block body_content%}
+<h2>Name : {{todo_detail.name}}</h2>
+<h2>Priority : {{todo_detail.priority}}</h2>
+
+<br>
+<a href="{% url 'todo:list' %}">Back to list</a>
+
+{% endblock %}
